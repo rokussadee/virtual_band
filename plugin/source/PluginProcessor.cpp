@@ -25,27 +25,15 @@ const juce::String AudioPluginAudioProcessor::getName() const {
 }
 
 bool AudioPluginAudioProcessor::acceptsMidi() const {
-#if JucePlugin_WantsMidiInput
   return true;
-#else
-  return false;
-#endif
 }
 
 bool AudioPluginAudioProcessor::producesMidi() const {
-#if JucePlugin_ProducesMidiOutput
   return true;
-#else
-  return false;
-#endif
 }
 
 bool AudioPluginAudioProcessor::isMidiEffect() const {
-#if JucePlugin_IsMidiEffect
   return true;
-#else
-  return false;
-#endif
 }
 
 double AudioPluginAudioProcessor::getTailLengthSeconds() const {
@@ -115,6 +103,8 @@ bool AudioPluginAudioProcessor::isBusesLayoutSupported(
 
 void AudioPluginAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer,
                                              juce::MidiBuffer& midiMessages) {
+  buffer.clear();
+  midiProcessor.processMidi(midiMessages);
   juce::ignoreUnused(midiMessages);
 
   juce::ScopedNoDenormals noDenormals;

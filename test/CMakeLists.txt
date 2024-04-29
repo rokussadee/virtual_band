@@ -7,6 +7,15 @@ enable_testing()
 
 add_executable(${PROJECT_NAME}
     source/AudioProcessorTest.cpp
+        ../plugin/include/VirtualBand/MidiProcessor.h
+        ../plugin/include/VirtualBand/MidiQueue.h
+        ../plugin/include/VirtualBand/MidiListModel.h
+        ../plugin/include/VirtualBand/MidiTable.h
+        ../plugin/include/VirtualBand/VirtualBandPluginProcessor.h
+        ../plugin/source/MidiProcessor.cpp
+        ../plugin/source/MidiQueue.cpp
+        ../plugin/source/MidiListModel.cpp
+        ../plugin/source/MidiTable.cpp
 )
 
 add_dependencies(${PROJECT_NAME} VirtualBandPlugin)
